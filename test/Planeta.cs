@@ -32,7 +32,7 @@ namespace DeepSpace
         {
             this.position = position;
             this.size = size;
-            this.population = population;
+            this.population = population; //cantidad de naves en el planeta?
             this.team = team;
             this.acc = 0;
             this.planetRenderer = new PlanetRenderer(this);

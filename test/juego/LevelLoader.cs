@@ -25,22 +25,23 @@ namespace DeepSpace
 			int limite = 5;
 			double cuadrante = 0;
 			var rnd = new Random();
-			planets = new List<Planeta> { new Planeta(game, new Vector2(x, y), 50, 20) };
+			planets = new List<Planeta> { new Planeta(game, new Vector2(x, y), 50, 20) }; //genera el planeta del centro
 			List<ArbolGeneral<Planeta>> arboles = new List<ArbolGeneral<Planeta>>{ new ArbolGeneral<Planeta>(planets[0]) };
 			routes = new List<Route>();
 			double porcion = 2 * Math.PI / limite;
 			for (int i = 0; i <= 5; i++) {
 				for (uint j = 1; j <= limite; j++) {
 					x = (float)(400.0f + radio * Math.Cos(j * porcion + cuadrante));
+					
 					y = (float)(250.0f - radio * Math.Sin(j * porcion + cuadrante));
 					planets.Add(new Planeta(game, new Vector2(x, y), ((uint)rnd.Next(20, 30)), ((uint)rnd.Next(5, 15))));
-					arboles.Add(new ArbolGeneral<Planeta>(planets.Last()));
+					arboles.Add(new ArbolGeneral<Planeta>(planets.Last()));//agrega a arboles un nuevo arbol general con el planeta generado al azar
 					routes.Add(new Route(game, planets[i], planets.Last()));
-					arboles[i].agregarHijo(arboles.Last());
+					arboles[i].agregarHijo(arboles.Last());//agregan 5 hijos al arbol general del planeta central
                     		
 				}
 				radio = 180.0f;
-				limite = 3;
+				limite = 3; 
 				porcion = (2 * Math.PI / 5) / limite;
 				cuadrante = i * limite * porcion;
 			}
